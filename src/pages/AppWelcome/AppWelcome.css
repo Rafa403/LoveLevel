@@ -1,0 +1,123 @@
+.app-welcome {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 40px 20px;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(37, 99, 235, 0.35),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(239, 68, 68, 0.3),
+      transparent 40%
+    ),
+    linear-gradient(
+      135deg,
+      #080b1a,
+      #1e1b4b,
+      #3b0764
+    );
+
+  color: white;
+}
+
+.welcome-content {
+  width: 100%;
+  max-width: 600px;
+
+  text-align: center;
+}
+
+.welcome-content h1 {
+  font-size: 4rem;
+
+  background: linear-gradient(
+    90deg,
+    #3b82f6,
+    #a855f7,
+    #ef4444
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  margin-bottom: 10px;
+}
+
+.welcome-content h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.welcome-content p {
+  max-width: 500px;
+  margin: 0 auto 35px;
+
+  color: #d1d5db;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.welcome-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.welcome-button {
+  border: none;
+  padding: 15px 20px;
+
+  border-radius: 10px;
+
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.login-button {
+  background: linear-gradient(
+    90deg,
+    #2563eb,
+    #7c3aed
+  );
+}
+
+.register-button {
+  background: linear-gradient(
+    90deg,
+    #7c3aed,
+    #dc2626
+  );
+}
+
+.welcome-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.welcome-features {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  margin-top: 40px;
+
+  color: #cbd5e1;
+  font-size: 0.9rem;
+}
