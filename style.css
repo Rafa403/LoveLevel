@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: hsla(276, 100%, 25%, 1);
+  background: linear-gradient(135deg, hsla(276, 100%, 25%, 1) 37.970711297071134%, hsla(233, 100%, 50%, 1) 100%);
+  background: -moz-linear-gradient(135deg, hsla(276, 100%, 25%, 1) 37.970711297071134%, hsla(233, 100%, 50%, 1) 100%);
+  background: -webkit-linear-gradient(135deg, hsla(276, 100%, 25%, 1) 37.970711297071134%, hsla(233, 100%, 50%, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#4C0080", endColorstr="#001DFF", GradientType=1 );
+  background-size: 600% 600%;
+  animation: gradientMove 12s ease infinite;
+  color: white;
+  overflow-x: hidden;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+}
+
+header h1 {
+   background: linear-gradient(90deg, #f500d4, #f803af, #e61348);
+    background-clip: text;
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+
+}
+
+header nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  background: linear-gradient(90deg, #f500d4, #f803af, #e61348);
+    background-clip: text;
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+  transition: 0.3s;
+}
+
+header nav a:hover {
+  color: #f43f5e;
+}
+
+section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 100px 20px;
+}
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px;
+  width: 300px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.hero h2 {
+  font-size: 3rem;
+  background: linear-gradient(90deg, #f500d4, #f803af, #e61348);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  max-width: 600px;
+}
+
+.btn {
+  margin-top: 30px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #f500d4, #f803af, #e61348);
+}
+.about {
+    background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px;
+  width: 300px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+
+}
