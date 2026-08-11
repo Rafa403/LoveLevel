@@ -90,13 +90,11 @@ function Login() {
     }
 
     localStorage.setItem(
-      CURRENT_USER_KEY,
-      JSON.stringify({
-        id: user.id,
-      })
+    "lovelevel_current_user",
+    JSON.stringify(user)
     )
 
-    navigate("/app")
+      navigate("/home")
   }
 
   return (

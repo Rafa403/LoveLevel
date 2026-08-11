@@ -25,7 +25,7 @@ function Landing() {
             geeks e apaixonados por tecnologia.
           </p>
 
-          <button className="btn" onClick={() => navigate("/app")}>
+          <button className="btn" onClick={() => navigate("/app-welcome")}>
             Começar
           </button>
         </main>

@@ -4,6 +4,7 @@ import Landing from "../pages/Landing/Landing";
 import AppWelcome from "../pages/AppWelcome/AppWelcome";
 import Login from "../pages/Login/Login";
 import Cadastro from "../pages/Cadastro/Cadastro";
+import Home from "../pages/Home/Home"
 
 function AppRoutes() {
   return (
@@ -12,7 +13,7 @@ function AppRoutes() {
         <Route path="/" 
         element={<Landing />} />
 
-        <Route path="/app" 
+        <Route path="/app-welcome" 
         element={<AppWelcome />} />
 
         <Route path="/login" 
@@ -20,6 +21,9 @@ function AppRoutes() {
 
         <Route path="/cadastro" 
         element={<Cadastro />} />
+        
+        <Route path="/home" 
+        element={<Home />} />
 
       </Routes>
 
