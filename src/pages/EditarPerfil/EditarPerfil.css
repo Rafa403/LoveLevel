@@ -1,0 +1,385 @@
+.editar-perfil-page,
+.editar-perfil-page * {
+  box-sizing: border-box;
+}
+
+.editar-perfil-page {
+  min-height: 100vh;
+
+  padding: 40px 24px;
+
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(37, 99, 235, 0.5),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(220, 38, 38, 0.45),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 50% 90%,
+      rgba(124, 58, 237, 0.45),
+      transparent 40%
+    ),
+    linear-gradient(
+      135deg,
+      #172554,
+      #312e81,
+      #581c87,
+      #7f1d1d
+    );
+
+  color: white;
+}
+
+.editar-perfil-container {
+  width: 100%;
+  max-width: 760px;
+
+  margin: 0 auto;
+}
+
+.editar-perfil-header {
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+
+  margin-bottom: 25px;
+}
+
+.editar-perfil-header h1 {
+  margin: 0;
+
+  font-size: 1.6rem;
+}
+
+.editar-perfil-voltar {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.12);
+
+  border-radius: 12px;
+
+  background: rgba(15, 23, 42, 0.4);
+
+  color: white;
+
+  font-size: 1.4rem;
+
+  cursor: pointer;
+}
+
+.editar-perfil-card {
+  padding: 35px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.1);
+
+  border-radius: 24px;
+
+  background: rgba(15, 23, 42, 0.42);
+
+  backdrop-filter: blur(15px);
+
+  box-shadow:
+    0 20px 60px
+    rgba(0, 0, 0, 0.2);
+}
+
+.editar-avatar {
+  width: 105px;
+  height: 105px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 30px;
+
+  border: 3px solid
+    rgba(255, 255, 255, 0.2);
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #7c3aed,
+      #dc2626
+    );
+
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.editar-campo {
+  position: relative;
+
+  margin-bottom: 22px;
+}
+
+.editar-campo label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #cbd5e1;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.editar-campo input,
+.editar-campo textarea {
+  width: 100%;
+
+  padding: 12px 14px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.12);
+
+  border-radius: 10px;
+
+  outline: none;
+
+  background: rgba(15, 23, 42, 0.5);
+
+  color: white;
+
+  font-family: inherit;
+  font-size: 0.9rem;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.editar-campo input:focus,
+.editar-campo textarea:focus {
+  border-color: rgba(129, 140, 248, 0.8);
+
+  background: rgba(15, 23, 42, 0.7);
+}
+
+.editar-campo input::placeholder,
+.editar-campo textarea::placeholder {
+  color: #64748b;
+}
+
+.editar-campo textarea {
+  min-height: 120px;
+
+  resize: vertical;
+}
+
+.editar-username {
+  display: flex;
+  align-items: center;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.12);
+
+  border-radius: 10px;
+
+  background: rgba(15, 23, 42, 0.5);
+
+  overflow: hidden;
+}
+
+.editar-username span {
+  padding-left: 14px;
+
+  color: #a5b4fc;
+
+  font-weight: 600;
+}
+
+.editar-username input {
+  border: none;
+
+  background: transparent;
+}
+
+.editar-contador {
+  position: absolute;
+
+  right: 10px;
+  bottom: 8px;
+
+  color: #64748b;
+
+  font-size: 0.7rem;
+}
+
+.editar-secao {
+  margin-top: 35px;
+
+  padding-top: 25px;
+
+  border-top: 1px solid
+    rgba(255, 255, 255, 0.08);
+}
+
+.editar-secao h2 {
+  margin: 0 0 7px;
+
+  font-size: 1rem;
+}
+
+.editar-secao p {
+  margin: 0 0 16px;
+
+  color: #94a3b8;
+
+  font-size: 0.8rem;
+}
+
+.editar-opcoes {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+.editar-opcao {
+  padding: 9px 14px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.12);
+
+  border-radius: 20px;
+
+  background: rgba(15, 23, 42, 0.4);
+
+  color: #cbd5e1;
+
+  font-family: inherit;
+
+  font-size: 0.8rem;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.editar-opcao:hover {
+  transform: translateY(-1px);
+
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.editar-opcao.selecionada {
+  border-color: rgba(129, 140, 248, 0.6);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(37, 99, 235, 0.35),
+      rgba(124, 58, 237, 0.35)
+    );
+
+  color: white;
+}
+
+.editar-erro {
+  margin-top: 25px;
+
+  padding: 12px 14px;
+
+  border: 1px solid
+    rgba(248, 113, 113, 0.25);
+
+  border-radius: 10px;
+
+  background: rgba(220, 38, 38, 0.12);
+
+  color: #fca5a5;
+
+  font-size: 0.82rem;
+}
+
+.editar-acoes {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  margin-top: 35px;
+}
+
+.editar-cancelar,
+.editar-salvar {
+  padding: 11px 20px;
+
+  border-radius: 10px;
+
+  font-family: inherit;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.editar-cancelar {
+  border: 1px solid
+    rgba(255, 255, 255, 0.12);
+
+  background: transparent;
+
+  color: #cbd5e1;
+}
+
+.editar-salvar {
+  border: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      #2563eb,
+      #7c3aed,
+      #dc2626
+    );
+
+  color: white;
+}
+
+.editar-salvar:hover,
+.editar-cancelar:hover {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 600px) {
+  .editar-perfil-page {
+    padding: 25px 16px;
+  }
+
+  .editar-perfil-card {
+    padding: 25px 18px;
+  }
+
+  .editar-acoes {
+    flex-direction: column-reverse;
+  }
+
+  .editar-cancelar,
+  .editar-salvar {
+    width: 100%;
+  }
+}
