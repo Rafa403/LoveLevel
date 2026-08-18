@@ -291,13 +291,14 @@
   border-top: 1px solid
     rgba(255, 255, 255, 0.08);
 
-  text-align: left;
+  text-align: center;
 }
 
 .perfil-secao h3 {
   margin: 0 0 12px;
 
   font-size: 1rem;
+  text-align: center;
 }
 
 .perfil-bio,
@@ -315,9 +316,7 @@
 
 .perfil-interesses {
   display: flex;
-
   flex-wrap: wrap;
-
   gap: 10px;
 }
 

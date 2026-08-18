@@ -1,33 +1,33 @@
-import { FormEvent, ChangeEvent, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import "./Cadastro.css"
+import { FormEvent, ChangeEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Cadastro.css";
 
 interface User {
-  id: string
-  displayName: string
-  username: string
-  email: string
-  password: string
-  birthDate: string
-  interests: string[]
-  connectionPreferences: string[]
-  level: number
-  xp: number
+  id: string;
+  displayName: string;
+  username: string;
+  email: string;
+  password: string;
+  birthDate: string;
+  interests: string[];
+  connectionPreferences: string[];
+  level: number;
+  xp: number;
 }
 
 interface FormData {
-  displayName: string
-  username: string
-  email: string
-  password: string
-  confirmPassword: string
-  birthDate: string
+  displayName: string;
+  username: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  birthDate: string;
 }
 
-const USERS_KEY = "lovelevel_users"
+const USERS_KEY = "lovelevel_users";
 
 function Cadastro() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState<FormData>({
     displayName: "",
@@ -36,62 +36,61 @@ function Cadastro() {
     password: "",
     confirmPassword: "",
     birthDate: "",
-  })
+  });
 
-  const [error, setError] = useState("")
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    const { name, value } = event.target
+    const { name, value } = event.target;
 
     setFormData((previousData) => ({
       ...previousData,
       [name]: value,
-    }))
+    }));
 
     if (error) {
-      setError("")
+      setError("");
     }
   }
 
   function calculateAge(birthDate: string): number {
-    const today = new Date()
-    const birth = new Date(`${birthDate}T00:00:00`)
+    const today = new Date();
+    const birth = new Date(`${birthDate}T00:00:00`);
 
-    let age = today.getFullYear() - birth.getFullYear()
+    let age = today.getFullYear() - birth.getFullYear();
 
-    const monthDifference = today.getMonth() - birth.getMonth()
+    const monthDifference = today.getMonth() - birth.getMonth();
 
     if (
       monthDifference < 0 ||
-      (monthDifference === 0 &&
-        today.getDate() < birth.getDate())
+      (monthDifference === 0 && today.getDate() < birth.getDate())
     ) {
-      age--
+      age--;
     }
 
-    return age
+    return age;
   }
 
   function isFutureDate(birthDate: string): boolean {
-    const today = new Date()
-    const selectedDate = new Date(`${birthDate}T00:00:00`)
+    const today = new Date();
+    const selectedDate = new Date(`${birthDate}T00:00:00`);
 
-    today.setHours(0, 0, 0, 0)
-    selectedDate.setHours(0, 0, 0, 0)
+    today.setHours(0, 0, 0, 0);
+    selectedDate.setHours(0, 0, 0, 0);
 
-    return selectedDate > today
+    return selectedDate > today;
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
+    event.preventDefault();
 
-    setError("")
+    setError("");
 
-    const displayName = formData.displayName.trim()
-    const username = formData.username.trim().toLowerCase()
-    const email = formData.email.trim().toLowerCase()
+    const displayName = formData.displayName.trim();
+    const username = formData.username.trim().toLowerCase();
+    const email = formData.email.trim().toLowerCase();
 
     if (
       !displayName ||
@@ -101,67 +100,76 @@ function Cadastro() {
       !formData.confirmPassword ||
       !formData.birthDate
     ) {
-      setError("Preencha todos os campos.")
-      return
+      setError("Preencha todos os campos.");
+      return;
+    }
+    if (displayName.length < 2) {
+      setError("O nome de exibição deve ter pelo menos 2 caracteres.");
+      return;
+    }
+
+    if (displayName.length > 30) {
+      setError("O nome de exibição deve ter no máximo 30 caracteres.");
+      return;
     }
 
     if (username.length < 3) {
-      setError(
-        "O nome de usuário deve ter pelo menos 3 caracteres."
-      )
-      return
+      setError("O nome de usuário deve ter pelo menos 3 caracteres.");
+      return;
+    }
+    if (username.length > 20) {
+      setError("O nome de usuário deve ter no máximo 20 caracteres.");
+      return;
+    }
+    if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+      setError("O nome de usuário pode conter apenas letras, números e _.");
+      return;
     }
 
     if (formData.password.length < 6) {
-      setError(
-        "A senha deve ter pelo menos 6 caracteres."
-      )
-      return
+      setError("A senha deve ter pelo menos 6 caracteres.");
+      return;
     }
 
     if (formData.password !== formData.confirmPassword) {
-      setError("As senhas não coincidem.")
-      return
+      setError("As senhas não coincidem.");
+      return;
     }
 
     if (isFutureDate(formData.birthDate)) {
-      setError(
-        "A data de nascimento não pode estar no futuro."
-      )
-      return
+      setError("A data de nascimento não pode estar no futuro.");
+      return;
     }
 
-    const age = calculateAge(formData.birthDate)
+    const age = calculateAge(formData.birthDate);
 
     if (age < 18) {
       setError(
-        "Não é possível criar uma conta. O LoveLevel é destinado a pessoas com 18 anos ou mais."
-      )
-      return
+        "Não é possível criar uma conta. O LoveLevel é destinado a pessoas com 18 anos ou mais.",
+      );
+      return;
     }
 
-    const storedUsers = localStorage.getItem(USERS_KEY)
+    const storedUsers = localStorage.getItem(USERS_KEY);
 
-    const users: User[] = storedUsers
-      ? JSON.parse(storedUsers)
-      : []
+    const users: User[] = storedUsers ? JSON.parse(storedUsers) : [];
 
     const emailAlreadyExists = users.some(
-      (user) => user.email.toLowerCase() === email
-    )
+      (user) => user.email.toLowerCase() === email,
+    );
 
     if (emailAlreadyExists) {
-      setError("Este e-mail já está cadastrado.")
-      return
+      setError("Este e-mail já está cadastrado.");
+      return;
     }
 
     const usernameAlreadyExists = users.some(
-      (user) => user.username.toLowerCase() === username
-    )
+      (user) => user.username.toLowerCase() === username,
+    );
 
     if (usernameAlreadyExists) {
-      setError("Este nome de usuário já está em uso.")
-      return
+      setError("Este nome de usuário já está em uso.");
+      return;
     }
 
     const newUser: User = {
@@ -175,22 +183,18 @@ function Cadastro() {
       connectionPreferences: [],
       level: 1,
       xp: 0,
-    }
+    };
 
-    users.push(newUser)
+    users.push(newUser);
 
-    localStorage.setItem(
-      USERS_KEY,
-      JSON.stringify(users)
-    )
+    localStorage.setItem(USERS_KEY, JSON.stringify(users));
 
-    navigate("/login")
+    navigate("/login");
   }
 
   return (
     <main className="cadastro-page">
       <div className="cadastro-container">
-
         <button
           type="button"
           className="back-button"
@@ -203,8 +207,7 @@ function Cadastro() {
           <h1>Crie sua conta</h1>
 
           <p>
-            Entre para o LoveLevel e encontre pessoas
-            que entendem o seu mundo.
+            Entre para o LoveLevel e encontre pessoas que entendem o seu mundo.
           </p>
         </div>
 
@@ -217,11 +220,8 @@ function Cadastro() {
         )}
 
         <form onSubmit={handleSubmit}>
-
           <div className="form-group">
-            <label htmlFor="displayName">
-              Nome de exibição
-            </label>
+            <label htmlFor="displayName">Nome de exibição</label>
 
             <input
               id="displayName"
@@ -231,13 +231,12 @@ function Cadastro() {
               onChange={handleChange}
               placeholder="Como você quer ser chamado?"
               autoComplete="name"
+              maxLength={30}
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="username">
-              Nome de usuário
-            </label>
+            <label htmlFor="username">Nome de usuário</label>
 
             <input
               id="username"
@@ -247,6 +246,7 @@ function Cadastro() {
               onChange={handleChange}
               placeholder="Escolha um nome de usuário"
               autoComplete="username"
+              maxLength={20}
             />
 
             <span className="input-hint">
@@ -255,9 +255,7 @@ function Cadastro() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="email">
-              E-mail
-            </label>
+            <label htmlFor="email">E-mail</label>
 
             <input
               id="email"
@@ -271,19 +269,13 @@ function Cadastro() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">
-              Senha
-            </label>
+            <label htmlFor="password">Senha</label>
 
             <div className="password-input-container">
               <input
                 id="password"
                 name="password"
-                type={
-                  showPassword
-                    ? "text"
-                    : "password"
-                }
+                type={showPassword ? "text" : "password"}
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="Crie uma senha"
@@ -293,40 +285,24 @@ function Cadastro() {
               <button
                 type="button"
                 className="password-toggle"
-                onClick={() =>
-                  setShowPassword(!showPassword)
-                }
-                aria-label={
-                  showPassword
-                    ? "Ocultar senha"
-                    : "Mostrar senha"
-                }
+                onClick={() => setShowPassword(!showPassword)}
+                aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
               >
                 <span
-                  className={`eye-icon ${
-                    showPassword
-                      ? "eye-hidden"
-                      : ""
-                  }`}
+                  className={`eye-icon ${showPassword ? "eye-hidden" : ""}`}
                 />
               </button>
             </div>
           </div>
 
           <div className="form-group">
-            <label htmlFor="confirmPassword">
-              Confirmar senha
-            </label>
+            <label htmlFor="confirmPassword">Confirmar senha</label>
 
             <div className="password-input-container">
               <input
                 id="confirmPassword"
                 name="confirmPassword"
-                type={
-                  showConfirmPassword
-                    ? "text"
-                    : "password"
-                }
+                type={showConfirmPassword ? "text" : "password"}
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 placeholder="Digite a senha novamente"
@@ -336,22 +312,14 @@ function Cadastro() {
               <button
                 type="button"
                 className="password-toggle"
-                onClick={() =>
-                  setShowConfirmPassword(
-                    !showConfirmPassword
-                  )
-                }
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 aria-label={
-                  showConfirmPassword
-                    ? "Ocultar senha"
-                    : "Mostrar senha"
+                  showConfirmPassword ? "Ocultar senha" : "Mostrar senha"
                 }
               >
                 <span
                   className={`eye-icon ${
-                    showConfirmPassword
-                      ? "eye-hidden"
-                      : ""
+                    showConfirmPassword ? "eye-hidden" : ""
                   }`}
                 />
               </button>
@@ -359,9 +327,7 @@ function Cadastro() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="birthDate">
-              Data de nascimento
-            </label>
+            <label htmlFor="birthDate">Data de nascimento</label>
 
             <input
               id="birthDate"
@@ -372,34 +338,25 @@ function Cadastro() {
             />
 
             <span className="input-hint">
-              Você precisa ter 18 anos ou mais para
-              criar uma conta.
+              Você precisa ter 18 anos ou mais para criar uma conta.
             </span>
           </div>
 
-          <button
-            type="submit"
-            className="submit-button"
-          >
+          <button type="submit" className="submit-button">
             Criar conta
           </button>
-
         </form>
 
         <div className="login-link">
           <span>Já possui uma conta?</span>
 
-          <button
-            type="button"
-            onClick={() => navigate("/login")}
-          >
+          <button type="button" onClick={() => navigate("/login")}>
             Entrar
           </button>
         </div>
-
       </div>
     </main>
-  )
+  );
 }
 
-export default Cadastro
+export default Cadastro;

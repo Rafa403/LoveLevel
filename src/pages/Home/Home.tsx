@@ -13,6 +13,7 @@ interface User {
   connectionPreferences: string[]
   level: number
   xp: number
+  avatar?: string;
 }
 
 const USERS_KEY = "lovelevel_users"
@@ -94,9 +95,16 @@ function Home() {
             type="button"
             onClick={() => navigate("/perfil")}
           >
-            {user.displayName
-              .charAt(0)
-              .toUpperCase()}
+            {user.avatar ? (
+              <img
+                src={user.avatar}
+                alt={`Avatar de ${user.displayName}`}
+              />
+            ) : (
+              user.displayName
+                .charAt(0)
+                .toUpperCase()
+            )}
           </button>
 
         </div>
